@@ -1,0 +1,77 @@
+# Gerekli kütüphaneleri yükleyin
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion_matrix, classification_report
+
+# Iris veri setini yükleyin
+data = load_iris()
+df = pd.DataFrame(data.data, columns=data.feature_names)
+df['target'] = data.target
+
+# Veri setinin ilk birkaç satırını görüntüleyin
+print(df.head())
+
+# Keşifsel Veri Analizi (EDA)
+# Veri setinin genel istatistiksel özetini alın
+print(df.describe())
+
+# Veri setinde eksik değer olup olmadığını kontrol edin
+print(df.isnull().sum())
+
+# Hedef değişkenin dağılımını kontrol edin
+print(df['target'].value_counts())
+
+# Veriyi özellikler (X) ve hedef (y) olarak ayırın
+X = df.drop('target', axis=1)
+y = df['target']
+
+# Veriyi eğitim ve test setlerine ayırın
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Standartlaştırıcıyı oluşturun ve eğitin, ardından eğitim ve test verilerini dönüştürün
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Lojistik regresyon modelini oluşturun
+model = LogisticRegression(max_iter=200)
+# Modeli eğitim verileriyle eğitin
+model.fit(X_train, y_train)
+
+# Modelin test setindeki tahminlerini alın
+y_pred = model.predict(X_test)
+
+# Performans metriklerini hesaplayın
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred, average='macro')
+recall = recall_score(y_test, y_pred, average='macro')
+
+# Karışıklık matrisi
+conf_matrix = confusion_matrix(y_test, y_pred)
+
+# Sınıflandırma raporu
+class_report = classification_report(y_test, y_pred)
+
+# Performans metriklerini ve karışıklık matrisini yazdırın
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print("\nConfusion Matrix:")
+print(conf_matrix)
+print("\nClassification Report:")
+print(class_report)
+
+# Karışıklık matrisini ve sınıflandırma raporunu görselleştirin
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Karışıklık matrisini görselleştirme
+plt.figure(figsize=(8, 6))
+sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues')
+plt.xlabel('Predicted')
+plt.ylabel('Actual')
+plt.title('Confusion Matrix')
+plt.show()
