@@ -1,7 +1,6 @@
 # Iris Veri Kümesi Analizi
 
-Bu proje, ünlü Iris veri kümesini kullanarak veri temizleme, keşifsel veri analizi (EDA) ve görselleştirme adımlarını içermektedir. Ayrıca, bir karar ağacı sınıflandırıcısı kullanılarak modelleme süreci gerçekleştirilmiştir.
-
+Bu proje, ünlü Iris veri kümesini kullanarak veri temizleme, keşifsel veri analizi (EDA) ve görselleştirme adımlarını içermektedir.
 ## Proje İçeriği
 
 1. **Veri Temizleme:**
@@ -16,12 +15,9 @@ Bu proje, ünlü Iris veri kümesini kullanarak veri temizleme, keşifsel veri a
    - Pairplot ile çiftler arası ilişkilerin gösterimi
    - Korelasyon matrisinin ısı haritası ile görselleştirilmesi
 
-4. **Modelleme Süreci:**
-   - Karar ağacı sınıflandırıcısı kullanılarak model oluşturulması
-   - Modelin eğitilmesi ve değerlendirilmesi
 
-5. **Raporlama:**
-   - Modelleme süreci, değerlendirme sonuçları ve potansiyel iyileştirmeler hakkında bilgi
+4. **Raporlama:**
+   - Değerlendirme sonuçları ve potansiyel iyileştirmeler hakkında bilgi
 
 ## Kullanılan Teknolojiler
 
