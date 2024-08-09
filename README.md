@@ -25,7 +25,7 @@ Bu proje, ünlü Iris veri kümesini kullanarak veri temizleme, keşifsel veri a
 - Pandas
 - Matplotlib
 - Seaborn
-- Scikit-learn
+
 
 
 
